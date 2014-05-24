@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.mybatisshow.dao.ShareDAO">
+
+    <cache />
+
+    <select id="fetch" resultType="Share">
+        select id, content from ui_share where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Share" >
+        insert into ui_share (content) values (#{content})
+    </insert>
+
+    <insert id="insertList">
+        insert into ui_share (content) values
+        <foreach collection="list" item="model"  separator=",">
+            (#{model.content})
+        </foreach>
+    </insert>
+</mapper>
